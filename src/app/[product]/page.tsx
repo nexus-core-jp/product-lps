@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { products, getProduct } from "@/lib/products";
+import { TrackedCTALink } from "@/components/TrackedCTALink";
 import type { Metadata } from "next";
 
 type Props = {
@@ -83,15 +84,17 @@ export default async function ProductLP({ params }: Props) {
             {product.description}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
+            <TrackedCTALink
               href={product.ctaLink}
+              product={slug}
+              location="hero"
               className={`group px-8 py-4 rounded-full bg-gradient-to-r ${product.heroColor} text-white text-lg font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 active:scale-95`}
             >
               {product.cta}
               <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">
                 →
               </span>
-            </a>
+            </TrackedCTALink>
             <span className="text-sm text-gray-500 dark:text-gray-400">
               {product.pricing}
             </span>
@@ -265,13 +268,15 @@ export default async function ProductLP({ params }: Props) {
           <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto">
             {product.solution}
           </p>
-          <a
+          <TrackedCTALink
             href={product.ctaLink}
+            product={slug}
+            location="bottom"
             className="inline-flex items-center px-10 py-5 rounded-full bg-white text-gray-900 font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 active:scale-95"
           >
             {product.cta}
             <span className="ml-2">→</span>
-          </a>
+          </TrackedCTALink>
           <p className="mt-6 text-sm text-white/60">{product.pricing}</p>
         </div>
       </section>
